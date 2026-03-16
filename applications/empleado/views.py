@@ -1,109 +1,62 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
-# Create your views here.
-
-# ------------------------------------------------------------------
-# APIS
-# ------------------------------------------------------------------
 from rest_framework.generics import (
     ListAPIView,
     CreateAPIView,
-    # DetailView
     RetrieveAPIView,
-    # Delete
     DestroyAPIView,
-    # Actualizar
     UpdateAPIView,
-    # Recupera y actualiza
-    RetrieveUpdateAPIView,
-    # Recupera y elimina
-    RetrieveDestroyAPIView,
 )
 
-from .serializer import (
-    HabilidadesSerializer,
-    EmpleadosSerializer,
-)
-
-# ------------------------------------------------------------------
-# MODELOS
-# ------------------------------------------------------------------
+from .serializer import HabilidadesSerializer, EmpleadosSerializer
 from .models import Empleado, Habilidad
 
 
-# ------------------------------------------------------------------
-# API CREAR UN EMPLEADO
-# ------------------------------------------------------------------
+# EMPLEADOS
 class CrearEmpleado(CreateAPIView):
     serializer_class = EmpleadosSerializer
+    queryset = Empleado.objects.all()
 
-# ------------------------------------------------------------------
-# API VER TODOS LOS EMPLEADOS
-# ------------------------------------------------------------------
+
 class ListarEmpleados(ListAPIView):
     serializer_class = EmpleadosSerializer
-    def get_queryset(self):
-        return Empleado.objects.all()
+    queryset = Empleado.objects.all()
 
-# ------------------------------------------------------------------
-# API VER EMPLEADO
-# ------------------------------------------------------------------
+
 class VerEmpleado(RetrieveAPIView):
     serializer_class = EmpleadosSerializer
-    def get_queryset(self):
-        return Empleado.objects.all()
+    queryset = Empleado.objects.all()
 
-# ------------------------------------------------------------------
-# API ACTUALZAR EMPLEADO
-# ------------------------------------------------------------------
+
 class ActualizarEmpleado(UpdateAPIView):
     serializer_class = EmpleadosSerializer
-    def get_queryset(self):
-        return Empleado.objects.all()
+    queryset = Empleado.objects.all()
 
-# ------------------------------------------------------------------
-# API ELIMINAR EMPLEADOS
-# ------------------------------------------------------------------
+
 class EliminarEmpleado(DestroyAPIView):
     serializer_class = EmpleadosSerializer
-    def get_queryset(self):
-        return Empleado.objects.all()
-    
-# ------------------------------------------------------------------
-# API CREAR UN HABILDIAD
-# ------------------------------------------------------------------
+    queryset = Empleado.objects.all()
+
+
+# HABILIDADES
 class CrearHabilidad(CreateAPIView):
     serializer_class = HabilidadesSerializer
+    queryset = Habilidad.objects.all()
 
-# ------------------------------------------------------------------
-# API VER TODAS LAS HABILIDADES
-# ------------------------------------------------------------------
+
 class ListarHabilidades(ListAPIView):
     serializer_class = HabilidadesSerializer
-    def get_queryset(self):
-        return Habilidad.objects.all()
+    queryset = Habilidad.objects.all()
 
-# ------------------------------------------------------------------
-# API VER HABILIDAD
-# ------------------------------------------------------------------
+
 class VerHabilidad(RetrieveAPIView):
     serializer_class = HabilidadesSerializer
-    def get_queryset(self):
-        return Habilidad.objects.all()
+    queryset = Habilidad.objects.all()
 
-# ------------------------------------------------------------------
-# API ACTUALIZAR HABILIDAD
-# ------------------------------------------------------------------
+
 class ActualizarHabilidad(UpdateAPIView):
     serializer_class = HabilidadesSerializer
-    def get_queryset(self):
-        return Habilidad.objects.all()
+    queryset = Habilidad.objects.all()
 
 
-# ------------------------------------------------------------------
-# API ELIMINAR HABILIDAD
-# ------------------------------------------------------------------
 class EliminarHabilidad(DestroyAPIView):
     serializer_class = HabilidadesSerializer
-    def get_queryset(self):
-        return Habilidad.objects.all()
+    queryset = Habilidad.objects.all()
