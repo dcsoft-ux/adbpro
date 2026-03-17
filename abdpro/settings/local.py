@@ -2,19 +2,17 @@
 import os
 from .base import *
 
-
-
 # ___ INICIO DEBUG
 DEBUG = True
-# ___ FIN DEBUG
 
 # ___ INICIO SERVIDORES PERMITIDAS
-
-ALLOWED_HOSTS = []
-# ___ INICIO RUTAS PERMITIDAS
+ALLOWED_HOSTS = runtime_config.get(
+    "ALLOWED_HOSTS",
+    ["127.0.0.1", "localhost"]
+)
 
 # ___ INICIO DATABASES
-DATABASES= {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': get_secret('DB_NAME'),
@@ -24,39 +22,28 @@ DATABASES= {
         'PORT': get_secret('PORT'),
     }
 }
-
 # ___ FIN DATABASES
 
 # ___ INICIO INTERNACIONALIZACION
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-# ___ INICIO INTERNACIONALIZACION
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
+# ___ FIN INTERNACIONALIZACION
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
+
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
 COMPRESS_PRECOMPILERS = (
-    (
-        'text/x-scss',
-        'django_libsass.SassCompiler'
-    ),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
 STATIC_URL = '/static/'
